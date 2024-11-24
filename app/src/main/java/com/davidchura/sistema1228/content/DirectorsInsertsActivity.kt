@@ -1,6 +1,8 @@
 package com.davidchura.sistema1228.content
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +26,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.davidchura.sistema1228.content.ui.theme.Sistema1228Theme
 
 class DirectorsInsertsActivity : ComponentActivity() {
@@ -38,11 +43,14 @@ class DirectorsInsertsActivity : ComponentActivity() {
                     topBar = {
                         Text("Directores")
                     }
-                    ) { innerPadding ->
-                    Column(modifier = Modifier.padding(innerPadding).fillMaxSize(),
+                ) { innerPadding ->
+                    Column(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize(),
                         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
                         verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
-                        ) {
+                    ) {
                         Text("Nuevo Director", style = MaterialTheme.typography.headlineLarge)
                         OutlinedTextField(
                             value = nombres,
@@ -60,12 +68,38 @@ class DirectorsInsertsActivity : ComponentActivity() {
                             label = { Text("Peliculas") }
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        Button(onClick = { /* Handle button click */ }) {
+                        Button(onClick = {
+                            Log.d("API Response", "Nombres: $nombres, Peliculas: $peliculas")
+                            InsertDirector(nombres, peliculas)
+                        }) {
                             Text("Registrar")
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun InsertDirector(nombres: String, peliculas: String) {
+
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://servicios.campus.pe/directoresinsert.php"
+
+        val stringRequest = object: StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                Log.d("API Response", response)
+                startActivity(Intent(this, DirectorsActivity::class.java))
+
+            },
+            { }) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["nombres"] = nombres
+                params["peliculas"] = peliculas
+                return params
+            }
+        }
+        queue.add(stringRequest)
     }
 }

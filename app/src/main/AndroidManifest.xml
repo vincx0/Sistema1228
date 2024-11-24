@@ -15,14 +15,18 @@
         android:theme="@style/Theme.Sistema1228">
         <activity
             android:name=".content.DirectorsInsertsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_directors_inserts"
-            android:theme="@style/Theme.Sistema1228" />
+            android:theme="@style/Theme.Sistema1228" >
+
+        </activity>
         <activity
             android:name=".content.DirectorsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_directors"
-            android:theme="@style/Theme.Sistema1228" />
+            android:theme="@style/Theme.Sistema1228" >
+
+        </activity>
         <activity
             android:name=".content.ProductDetailActivity"
             android:exported="false"
