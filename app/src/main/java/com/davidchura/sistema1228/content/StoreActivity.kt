@@ -45,13 +45,14 @@ import com.android.volley.toolbox.Volley
 import com.davidchura.sistema1228.R
 import com.davidchura.sistema1228.ui.theme.Color2
 import com.davidchura.sistema1228.ui.theme.Sistema1228Theme
+import com.davidchura.sistema1228.utils.BASE_URL
 import org.json.JSONArray
 
 class StoreActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val queue = Volley.newRequestQueue(this)
-        val url = "https://servicios.campus.pe/categorias.php"
+        val url = BASE_URL + "categorias.php"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->

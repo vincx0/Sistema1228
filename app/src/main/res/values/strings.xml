@@ -36,5 +36,8 @@ Praesent vel vehicula neque, vel porttitor odio. Aenean congue imperdiet quam id
     <string name="title_activity_product_detail">ProductDetailActivity</string>
     <string name="title_activity_directors">DirectorsActivity</string>
     <string name="title_activity_directors_inserts">DirectorsInsertsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_directores_update">DirectoresUpdateActivity</string>
 
 </resources>

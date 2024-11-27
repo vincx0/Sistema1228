@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Sistema1228Theme {
-
+                
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()

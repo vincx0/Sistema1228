@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +19,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -27,27 +27,22 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.davidchura.sistema1228.R
-import com.davidchura.sistema1228.content.ui.theme.Sistema1228Theme
+import com.davidchura.sistema1228.DirectoresUpdateActivity
 import com.davidchura.sistema1228.ui.theme.Color2
+import com.davidchura.sistema1228.utils.BASE_URL
 import org.json.JSONArray
-import java.util.concurrent.ConcurrentSkipListMap
 
 class DirectorsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val queue = Volley.newRequestQueue(this)
-        val url = "https://servicios.campus.pe/directores.php"
+        val url = BASE_URL + "directores.php"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
@@ -123,6 +118,9 @@ class DirectorsActivity : ComponentActivity() {
                                             modifier = Modifier
                                                 .padding(16.dp)
                                                 .fillMaxWidth()
+                                                .clickable {
+                                                    selectDirector(director)
+                                                }
                                         ) { // Espaciado interior
                                             Text(
                                                 text = director["iddirector"].toString(),
@@ -142,5 +140,17 @@ class DirectorsActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun selectDirector(director: java.util.HashMap<String, String>) {
+        val intent = Intent(this, DirectoresUpdateActivity::class.java)
+
+        val bundle = Bundle().apply {
+            putString("iddirector", director["iddirector"])
+            putString("nombres", director["nombres"])
+            putString("peliculas", director["peliculas"])
+        }
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

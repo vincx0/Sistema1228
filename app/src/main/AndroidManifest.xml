@@ -14,17 +14,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sistema1228">
         <activity
+            android:name=".DirectoresUpdateActivity"
+            android:exported="false"
+            android:label="@string/title_activity_directores_update"
+            android:theme="@style/Theme.Sistema1228" />
+        <activity
+            android:name=".content.ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.Sistema1228" />
+        <activity
+            android:name=".content.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login"
+            android:theme="@style/Theme.Sistema1228" />
+        <activity
             android:name=".content.DirectorsInsertsActivity"
             android:exported="true"
             android:label="@string/title_activity_directors_inserts"
-            android:theme="@style/Theme.Sistema1228" >
-
-        </activity>
+            android:theme="@style/Theme.Sistema1228" />
         <activity
             android:name=".content.DirectorsActivity"
             android:exported="true"
             android:label="@string/title_activity_directors"
-            android:theme="@style/Theme.Sistema1228" >
+            android:theme="@style/Theme.Sistema1228">
 
         </activity>
         <activity
@@ -41,17 +54,12 @@
             android:name=".content.StoreActivity"
             android:exported="true"
             android:label="@string/title_activity_store"
-            android:theme="@style/Theme.Sistema1228">
-
-
-        </activity>
+            android:theme="@style/Theme.Sistema1228" />
         <activity
             android:name=".content.EmployeesActivity"
             android:exported="true"
             android:label="@string/title_activity_employees"
-            android:theme="@style/Theme.Sistema1228">
-
-        </activity>
+            android:theme="@style/Theme.Sistema1228" />
         <activity
             android:name=".content.SuppliersActivity"
             android:exported="false"
@@ -82,10 +90,7 @@
             android:name=".BeginActivity"
             android:exported="true"
             android:label="@string/title_activity_begin"
-            android:theme="@style/Theme.Sistema1228">
-
-        </activity>
-
+            android:theme="@style/Theme.Sistema1228" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

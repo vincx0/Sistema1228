@@ -39,6 +39,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.davidchura.sistema1228.R
 import com.davidchura.sistema1228.ui.theme.Sistema1228Theme
+import com.davidchura.sistema1228.utils.BASE_URL
 import org.json.JSONArray
 
 class ProductDetailActivity : ComponentActivity() {
@@ -48,7 +49,7 @@ class ProductDetailActivity : ComponentActivity() {
         // otro activity por intent
         val idproducto = bundle!!.getString("idproducto")
         val queue = Volley.newRequestQueue(this)
-        val url = "https://servicios.campus.pe/productos.php?idproducto=$idproducto"
+        val url = BASE_URL + "productos.php?idproducto=$idproducto"
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             { response ->

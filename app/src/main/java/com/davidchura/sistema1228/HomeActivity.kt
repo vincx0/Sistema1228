@@ -45,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.davidchura.sistema1228.content.DirectorsActivity
 import com.davidchura.sistema1228.content.EmployeesActivity
+import com.davidchura.sistema1228.content.LoginActivity
 import com.davidchura.sistema1228.content.StoreActivity
 import com.davidchura.sistema1228.content.SuppliersActivity
 import com.davidchura.sistema1228.ui.theme.Sistema1228Theme
@@ -128,6 +129,7 @@ class HomeActivity : ComponentActivity() {
             1 -> startActivity(Intent(this, EmployeesActivity::class.java))
             2 -> startActivity(Intent(this, StoreActivity::class.java))
             3 -> startActivity(Intent(this, DirectorsActivity::class.java))
+            4 -> startActivity(Intent(this, LoginActivity::class.java))
 
             else -> finish()
         }

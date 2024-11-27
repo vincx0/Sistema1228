@@ -18,9 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.davidchura.sistema1228.content.ProfileActivity
 import com.davidchura.sistema1228.ui.theme.Sistema1228Theme
+import com.davidchura.sistema1228.utils.UserStore
+import com.davidchura.sistema1228.utils.usuarioActivo
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.json.JSONArray
 
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +34,22 @@ class SplashActivity : ComponentActivity() {
         setContent {
             Sistema1228Theme {
                 LaunchedEffect(key1 = true) {
-                    delay(4000)
+                    delay(2000)
+                    val userStore = UserStore(this@SplashActivity)
                     lifecycleScope.launch {
-                        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        val dato = userStore.leerDatosUsuario.first()
+                        if (dato == "") {
+                            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                        } else {
+                            startActivity(Intent(this@SplashActivity, ProfileActivity::class.java))
+                            usuarioActivo = JSONArray(dato).getJSONObject(0)
+                        }
                     }
                 }
-                Box(modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.logo),
                         contentDescription = null
