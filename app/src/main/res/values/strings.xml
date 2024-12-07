@@ -39,5 +39,8 @@ Praesent vel vehicula neque, vel porttitor odio. Aenean congue imperdiet quam id
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_directores_update">DirectoresUpdateActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
+    <string name="title_activity_client_update">ClientUpdateActivity</string>
+    <string name="title_activity_clients_insert">ClientsInsertActivity</string>
 
 </resources>

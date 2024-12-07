@@ -82,9 +82,14 @@ class DirectoresUpdateActivity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(onClick = {
                             Log.d("API Response", "Nombres: $nombres, Peliculas: $peliculas")
-                            InsertDirector(nombres, peliculas, iddirector)
+                            updateDirector(nombres, peliculas, iddirector)
                         }) {
                             Text("Actualizar")
+                        }
+                        Button(onClick = {
+                            deleteDirector(iddirector)
+                        }){
+                            Text("Eliminar")
                         }
                     }
                 }
@@ -92,7 +97,30 @@ class DirectoresUpdateActivity : ComponentActivity() {
         }
     }
 
-    private fun InsertDirector(nombres: String, peliculas: String, iddirector: String) {
+    private fun deleteDirector(iddirector: String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = BASE_URL + "directoresdelete.php"
+
+        val stringRequest = object: StringRequest(
+            Request.Method.POST, url,
+            { response ->
+                Log.d("API Response", response)
+                Toast.makeText(this, "Eliminado exitosamenete", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, DirectorsActivity::class.java))
+
+            },
+            { }) {
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+
+                params["iddirector"] = iddirector
+                return params
+            }
+        }
+        queue.add(stringRequest)
+    }
+
+    private fun updateDirector(nombres: String, peliculas: String, iddirector: String) {
 
         val queue = Volley.newRequestQueue(this)
         val url = BASE_URL + "directoresupdate.php"
